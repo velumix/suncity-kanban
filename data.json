@@ -1,0 +1,550 @@
+{
+  "repo": "velumix/SunCityRP",
+  "projectUrl": "https://github.com/users/velumix/projects/1",
+  "repoUrl": "https://github.com/velumix/SunCityRP",
+  "generatedAt": "2026-11-21T03:26:03.194Z",
+  "metrics": {
+    "testsPassed": 399,
+    "testsTotal": 399,
+    "services": 52,
+    "aggregates": 117,
+    "definitions": 289,
+    "scriptGuides": 482,
+    "nervePackets": 236,
+    "nervePacketCap": 240
+  },
+  "columns": [
+    {
+      "id": "Backlog",
+      "label": "Backlog",
+      "accent": "#8e99ad",
+      "description": "Planned roadmap & MVP gate work"
+    },
+    {
+      "id": "Ready",
+      "label": "Ready",
+      "accent": "#0a84ff",
+      "description": "Scoped & ready to pick up next"
+    },
+    {
+      "id": "In Progress",
+      "label": "In Progress",
+      "accent": "#ff9f0a",
+      "description": "Actively being built or verified"
+    },
+    {
+      "id": "In Review / QA",
+      "label": "In Review / QA",
+      "accent": "#bf5af2",
+      "description": "Shipped to main; awaiting Studio playtest"
+    },
+    {
+      "id": "Done",
+      "label": "Done",
+      "accent": "#30d69c",
+      "description": "Implemented, tested, and verified"
+    }
+  ],
+  "items": [
+    {
+      "number": 3,
+      "title": "[Core] Phases 0-13 Server Platform & Architecture (52 Services, 117 Aggregates)",
+      "body": "Completed Master Implementation Checklist Phases 0-13 across persistence, identity/progression, economy, inventory, world/vehicles, 5 jobs, housing, businesses, Sun Slice Pizzeria, phone/social/orgs, medical/dispatch/police, crime/syndicate, safety/moderation, and live operations. Verified via 399 deterministic tests, service dependency map, and content validator.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/3",
+      "labels": [
+        {
+          "name": "area:infra",
+          "color": "6E7781"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P0 Critical",
+      "area": "Backend & Ops",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:20:21Z"
+    },
+    {
+      "number": 4,
+      "title": "[UI] SunOS Optical Liquid Glass UI Overhaul (Loading, Lobby, HUD, Workbench)",
+      "body": "Shipped commit 845b3a3. Replaced broken loading music overlay and unified all SunOS shells (Bootstrap loading screen, Character Lobby, World HUD, Hotbar, Navigation HUD, Reception, Ammunition Workbench, ProjectVite) under the Optical Liquid Glass specification with opposing-corner specular rims, caustic sheen, and universal mobile UIScale.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/4",
+      "labels": [
+        {
+          "name": "area:ui",
+          "color": "0A84FF"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P1 High",
+      "area": "UI & SunOS",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:20:33Z"
+    },
+    {
+      "number": 5,
+      "title": "[Weather] 5-Part Miami Tropical Weather System (Rain, Lightning, Audio, WeatherApp, Cmdr)",
+      "body": "Shipped commit d2f782e. Implemented multi-layer rain with 3x3 roof shelter occlusion and underwater cutoff, double-flash lightning with physics thunder delay, dual-channel rain/wind audio with indoor/underwater EQ muffle, live SunOS WeatherApp, and /weather + /time Cmdr admin commands.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/5",
+      "labels": [
+        {
+          "name": "area:weather",
+          "color": "00D4F0"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P1 High",
+      "area": "Weather & World",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:20:43Z"
+    },
+    {
+      "number": 6,
+      "title": "[NPC] Server-Authoritative R15 Ambient NPCs (ByteNetMax, Behavior Tree, FSM, Ragdolls)",
+      "body": "Shipped commit 906a392. Upgraded all 20 pedestrians and 6 venue staff to genuine Roblox R15 avatars with official R15 Animator tracks, Blackboard + Priority Behavior Tree + 13-state validated FSM, full 15-part R15 PhysX car-impact ragdolls with 45-stud witness cascades, and server-authoritative 10 Hz ByteNetMax binary snapshot replication (482 bytes/frame) + reliable event sync for kills, revives, and player interactions.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/6",
+      "labels": [
+        {
+          "name": "area:npc",
+          "color": "FF3098"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P0 Critical",
+      "area": "Ambient NPCs",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:20:54Z"
+    },
+    {
+      "number": 7,
+      "title": "[World] Vice City Map Landmarks & Wave 3 GPS District Styling",
+      "body": "Shipped commit 240a20e. Authored 16 frozen ViceMapDefinitions landmarks across all 4 districts with Phone MapApp GPS waypoint routing and Vice City pastel styling.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/7",
+      "labels": [
+        {
+          "name": "area:world",
+          "color": "30D69C"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P2 Medium",
+      "area": "Weather & World",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:21:04Z"
+    },
+    {
+      "number": 8,
+      "title": "[Water] Baked Ocean Hydrodynamics, Swimming & Sunrunner 24 Boat Variants",
+      "body": "Shipped commit 5b96136. Added Gerstner wave deformation, hull draft & Kelvin wake hydrodynamics, swimming HUD/air mechanics, and 3D Sunrunner 24 boat variants/LODs with PBR texture sets.",
+      "state": "CLOSED",
+      "url": "https://github.com/velumix/SunCityRP/issues/8",
+      "labels": [
+        {
+          "name": "area:world",
+          "color": "30D69C"
+        },
+        {
+          "name": "status:shipped",
+          "color": "2EA043"
+        }
+      ],
+      "status": "Done",
+      "priority": "P1 High",
+      "area": "Water & Boats",
+      "phase": "Shipped",
+      "updatedAt": "2026-11-21T03:21:15Z"
+    },
+    {
+      "number": 9,
+      "title": "[QA] Studio Multiplayer Playtest: R15 Ambient NPCs & ByteNetMax Replication",
+      "body": "Verify in a 2-player Local Server test in Roblox Studio:\n- All 20 pedestrians spawn as genuine R15 avatars playing smooth Walk/Run/Idle/PhoneHold/Emote animations\n- Hitting a pedestrian at speed launches their R15 ragdoll identically on both clients with impact SFX, dust, driver camera punch, and 45-stud witness panic cascade\n- Lethal hits (>= 58 studs/s) transition to Dead and allow another player to press E (Help Resident) to revive them\n- Pressing E (Talk) makes the resident stop, face the player, wave, and speak identically for all players.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/9",
+      "labels": [
+        {
+          "name": "area:npc",
+          "color": "FF3098"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "In Review / QA",
+      "priority": "P0 Critical",
+      "area": "Ambient NPCs",
+      "phase": "Live QA",
+      "updatedAt": "2026-11-21T03:21:25Z"
+    },
+    {
+      "number": 10,
+      "title": "[QA] Studio Live Playtest: 5-Part Tropical Weather System & Cmdr Overrides",
+      "body": "Verify in Roblox Studio:\n- Run /weather Storm, /weather Rain, /weather Clear, /time 18, /time 23 via Cmdr\n- Confirm 3x3 roof shelter occlusion stops rain and muffles audio indoors\n- Confirm underwater cutoff disables rain/droplets and muffles audio\n- Confirm double-flash lightning + physics thunder delay and live Phone WeatherApp updates.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/10",
+      "labels": [
+        {
+          "name": "area:weather",
+          "color": "00D4F0"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "In Review / QA",
+      "priority": "P1 High",
+      "area": "Weather & World",
+      "phase": "Live QA",
+      "updatedAt": "2026-11-21T03:21:34Z"
+    },
+    {
+      "number": 11,
+      "title": "[QA] Studio Live Playtest: SunOS Optical Liquid Glass Loading, Lobby & World HUD",
+      "body": "Verify in Roblox Studio across desktop and mobile emulator viewports:\n- Loading screen music card, progress, and Optical Liquid Glass polish\n- Character Lobby preview framing, skin/bundle customization, and spawn destination selector\n- World HUD, Hotbar, Navigation HUD, Reception, and Ammunition Workbench glass legibility.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/11",
+      "labels": [
+        {
+          "name": "area:ui",
+          "color": "0A84FF"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "In Review / QA",
+      "priority": "P1 High",
+      "area": "UI & SunOS",
+      "phase": "Live QA",
+      "updatedAt": "2026-11-21T03:21:42Z"
+    },
+    {
+      "number": 12,
+      "title": "[QA] Studio Live Playtest: SkyPhone Nerve Migration End-to-End",
+      "body": "Verify in Roblox Studio from the handoff checklist:\n- Phone calls, messages, mail, camera, banking, VaultX marketplace, and audio player end-to-end on the Nerve transport without errors.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/12",
+      "labels": [
+        {
+          "name": "area:ui",
+          "color": "0A84FF"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "In Review / QA",
+      "priority": "P2 Medium",
+      "area": "UI & SunOS",
+      "phase": "Live QA",
+      "updatedAt": "2026-11-21T03:21:51Z"
+    },
+    {
+      "number": 13,
+      "title": "[QA] Studio Live Playtest: Sunrunner 24 Boats, Ocean Waves & Swimming",
+      "body": "Verify in Roblox Studio:\n- Marina boat spawning & Sunrunner 24 variants/LODs\n- Planing, hull draft, Kelvin wakes, and screen water droplets\n- Swim entry/exit hysteresis, air meter HUD, and underwater murk.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/13",
+      "labels": [
+        {
+          "name": "area:world",
+          "color": "30D69C"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "In Review / QA",
+      "priority": "P2 Medium",
+      "area": "Water & Boats",
+      "phase": "Live QA",
+      "updatedAt": "2026-11-21T03:22:00Z"
+    },
+    {
+      "number": 14,
+      "title": "[FND-004] Complete CI Quality Workflow (PR Validation vs Main Publishing)",
+      "body": "Remaining unchecked item from Phase 0:\n- Validate configuration, schemas, definitions, Selene lint, Lune tests (399+), script docs, service map, Rojo build, and Moonwave docs in GitHub Actions\n- Separate pull-request validation from main publishing\n- Verify intentionally broken validation fails the workflow.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/14",
+      "labels": [
+        {
+          "name": "area:infra",
+          "color": "6E7781"
+        },
+        {
+          "name": "gate:vertical-slice",
+          "color": "8957E5"
+        }
+      ],
+      "status": "Ready",
+      "priority": "P1 High",
+      "area": "Backend & Ops",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:09Z"
+    },
+    {
+      "number": 15,
+      "title": "[NPC] Hook Melee & Firearm Combat into Ambient NPC Damage & Witness Escalation",
+      "body": "Wire weapon/melee hit validation on the server into CityLifeDirector:DamageAmbientNpc(ordinal, damage, impulseVelocity, attackerUserId) so shooting or punching an ambient resident triggers synchronized ByteNetMax ragdolls, knockouts/deaths, witness panic cascades, and optional police dispatch / notoriety alerts.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/15",
+      "labels": [
+        {
+          "name": "area:npc",
+          "color": "FF3098"
+        },
+        {
+          "name": "area:gameplay",
+          "color": "FF9F0A"
+        }
+      ],
+      "status": "Ready",
+      "priority": "P1 High",
+      "area": "Ambient NPCs",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:18Z"
+    },
+    {
+      "number": 16,
+      "title": "[Vertical Slice] End-to-End Little Sol Core Resident Loop Verification",
+      "body": "Vertical-slice release gate requirement:\n- Verify Create -> Spawn -> Work (Courier/Sun Slice) -> Get Paid -> Purchase -> Store -> Leave -> Reconnect works reliably with persistent inventory, bank, starter rental, and vehicle in Little Sol.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/16",
+      "labels": [
+        {
+          "name": "area:gameplay",
+          "color": "FF9F0A"
+        },
+        {
+          "name": "gate:vertical-slice",
+          "color": "8957E5"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "Ready",
+      "priority": "P0 Critical",
+      "area": "Gameplay & Jobs",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:28Z"
+    },
+    {
+      "number": 17,
+      "title": "[Vertical Slice] Sun Slice Pizzeria Multiplayer Worker & Owner Loop QA",
+      "body": "Vertical-slice release gate requirement:\n- Verify full kitchen stations, recipe execution, walk-in/phone/delivery order channels, owner stocking/pricing, and low-population NPC fallback demand in live Studio multiplayer.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/17",
+      "labels": [
+        {
+          "name": "area:gameplay",
+          "color": "FF9F0A"
+        },
+        {
+          "name": "gate:vertical-slice",
+          "color": "8957E5"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "Ready",
+      "priority": "P1 High",
+      "area": "Gameplay & Jobs",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:37Z"
+    },
+    {
+      "number": 18,
+      "title": "[Vertical Slice] Mobile & Controller Verification Across Essential Loops",
+      "body": "Vertical-slice release gate requirement:\n- Verify touch controls and gamepad/controller support across character lobby, driving, boating, jobs, Sun Slice stations, proximity prompts, and SunOS Phone apps.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/18",
+      "labels": [
+        {
+          "name": "area:ui",
+          "color": "0A84FF"
+        },
+        {
+          "name": "gate:vertical-slice",
+          "color": "8957E5"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P1 High",
+      "area": "QA & Release",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:45Z"
+    },
+    {
+      "number": 19,
+      "title": "[Vertical Slice] Staging Data Recovery, Rollback & Low-Pop Fallback Rehearsal",
+      "body": "Vertical-slice release gate requirement:\n- Rehearse backup export, two-person recovery manifest restore, rollback, medical NPC rescue fallback, and economy/exploit telemetry dashboards in staging.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/19",
+      "labels": [
+        {
+          "name": "area:infra",
+          "color": "6E7781"
+        },
+        {
+          "name": "gate:vertical-slice",
+          "color": "8957E5"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P2 Medium",
+      "area": "Backend & Ops",
+      "phase": "Vertical Slice",
+      "updatedAt": "2026-11-21T03:22:54Z"
+    },
+    {
+      "number": 20,
+      "title": "[Decisions] Finalize GDD Decision Register (DEC-001 through DEC-012)",
+      "body": "Resolve open architectural and product decisions in docs/architecture/decisions/:\n- DEC-001 Audience maturity (Moderate vs 18+)\n- DEC-002 Server model\n- DEC-003 Population target & budgets\n- DEC-004 Visual direction\n- DEC-005 Driving handling target\n- DEC-007 Direct player trading timing\n- DEC-009 Interior streaming/instancing model\n- DEC-010 Org governance\n- DEC-011 Court/government timing\n- DEC-012 Non-pay-to-win monetization catalogue.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/20",
+      "labels": [
+        {
+          "name": "gate:mvp",
+          "color": "D29922"
+        },
+        {
+          "name": "type:decision",
+          "color": "BF3989"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P1 High",
+      "area": "QA & Release",
+      "phase": "Decisions",
+      "updatedAt": "2026-11-21T03:23:01Z"
+    },
+    {
+      "number": 21,
+      "title": "[MVP] Expand & Polish 3 Dense Vice-Inspired Districts",
+      "body": "MVP release gate requirement:\n- Ensure 3 dense districts (Little Sol / Ocean Drive, Midtown / Motorsports, Sun Bay Marina) meet GDD world rules with complete streaming-safe landmarks, starter + upgraded housing tiers, and pedestrian/traffic flow.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/21",
+      "labels": [
+        {
+          "name": "area:world",
+          "color": "30D69C"
+        },
+        {
+          "name": "gate:mvp",
+          "color": "D29922"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P1 High",
+      "area": "Weather & World",
+      "phase": "MVP Gate",
+      "updatedAt": "2026-11-21T03:23:10Z"
+    },
+    {
+      "number": 22,
+      "title": "[MVP] Balance & Measure All 5 Civilian Careers",
+      "body": "MVP release gate requirement:\n- Measure income/hour, completion rate, and abandonment across Courier, Taxi/Rideshare, Sanitation, Mechanic-lite, and Logistics; verify rank/skill/reputation progression has no universal-level shortcut.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/22",
+      "labels": [
+        {
+          "name": "area:gameplay",
+          "color": "FF9F0A"
+        },
+        {
+          "name": "gate:mvp",
+          "color": "D29922"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P2 Medium",
+      "area": "Gameplay & Jobs",
+      "phase": "MVP Gate",
+      "updatedAt": "2026-11-21T03:23:18Z"
+    },
+    {
+      "number": 23,
+      "title": "[MVP] Police-Lite, Dispatch, Evidence & Low-Tier Crime Counterplay Audit",
+      "body": "MVP release gate requirement:\n- Verify police stops, citations/warrants, impound, unified dispatch, medical fallback, evidence chain, and one low-tier crime loop + organized event meet safety, anti-RDM, and loss-cap rules.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/23",
+      "labels": [
+        {
+          "name": "area:gameplay",
+          "color": "FF9F0A"
+        },
+        {
+          "name": "gate:mvp",
+          "color": "D29922"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P2 Medium",
+      "area": "Gameplay & Jobs",
+      "phase": "MVP Gate",
+      "updatedAt": "2026-11-21T03:23:28Z"
+    },
+    {
+      "number": 24,
+      "title": "[MVP] Target-Population Load/Soak Test & Performance Budget Sign-Off",
+      "body": "MVP release gate requirement:\n- Run authored low/target/max population load and soak tests covering reconnects, long sessions, server shutdown, ByteNetMax bandwidth, NPC CPU budget, and monetization non-pay-to-win review.",
+      "state": "OPEN",
+      "url": "https://github.com/velumix/SunCityRP/issues/24",
+      "labels": [
+        {
+          "name": "area:infra",
+          "color": "6E7781"
+        },
+        {
+          "name": "gate:mvp",
+          "color": "D29922"
+        },
+        {
+          "name": "type:qa",
+          "color": "A371F7"
+        }
+      ],
+      "status": "Backlog",
+      "priority": "P2 Medium",
+      "area": "QA & Release",
+      "phase": "MVP Gate",
+      "updatedAt": "2026-11-21T03:23:36Z"
+    }
+  ]
+}
