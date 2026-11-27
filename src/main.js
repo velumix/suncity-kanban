@@ -329,7 +329,7 @@ function sortedItems() {
 }
 
 function sortedAssets() {
-  return [...assetsMap.values()].sort((a, b) => (Number(a._order) || 999) - (Number(b._order) || 999));
+  return [...assetsMap.values()].sort((a, b) => (Number(a.order) ?? 999) - (Number(b.order) ?? 999));
 }
 
 function populateFilters() {
@@ -1111,7 +1111,7 @@ async function importSeedBundleJson(rawJson) {
       ref: doc(db, "workspaces", WORKSPACE_ID, "assets", asset.id),
       data: {
         ...asset,
-        _order: idx,
+        order: idx,
         renders: (asset.renders || []).map(normalizeRenderUrl)
       }
     });
@@ -1210,7 +1210,7 @@ function wireUiEvents() {
           targetPath: "",
           diskPath: "",
           renders: [],
-          _order: 0,
+          order: 0,
           updatedAt: new Date().toISOString()
         });
       }
