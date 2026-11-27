@@ -3,613 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sun City RP — Development Kanban</title>
-  <meta name="description" content="SunOS Optical Liquid Glass Kanban board for Sun City RP development, Studio QA, Vertical Slice Gate, and MVP Roadmap." />
+  <title>Velumix Studio — Games &amp; 3D Asset Kanban</title>
+  <meta name="description" content="Google-authenticated Kanban &amp; Velum Forge 3D Asset Studio for Sun City RP, Dive, and Observatory." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-0: #070b12;
-      --bg-1: #0d1320;
-      --glass-bg: rgba(16, 22, 34, 0.62);
-      --glass-card: rgba(20, 27, 42, 0.72);
-      --glass-card-hover: rgba(26, 36, 56, 0.86);
-      --rim-light: rgba(255, 255, 255, 0.16);
-      --rim-soft: rgba(255, 255, 255, 0.08);
-      --text-primary: #f5f7fb;
-      --text-secondary: #a8b3c7;
-      --text-muted: #6f7c94;
-      --azure: #0a84ff;
-      --cyan: #00d4f0;
-      --flamingo: #ff3098;
-      --mint: #30d69c;
-      --amber: #ff9f0a;
-      --purple: #bf5af2;
-      --danger: #ff453a;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-pill: 999px;
-      --shadow-glass: 0 18px 48px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-0);
-      color: var(--text-primary);
-      min-height: 100vh;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Ambient Vice City Miami caustic glow backdrop */
-    .ambient-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 65% 55% at 12% 8%, rgba(10, 132, 255, 0.22), transparent 60%),
-        radial-gradient(ellipse 55% 48% at 88% 12%, rgba(255, 48, 152, 0.18), transparent 62%),
-        radial-gradient(ellipse 60% 50% at 52% 95%, rgba(0, 212, 240, 0.14), transparent 65%),
-        linear-gradient(180deg, #070b12 0%, #0b111d 55%, #070b12 100%);
-    }
-
-    .app-shell {
-      max-width: 1760px;
-      margin: 0 auto;
-      padding: 20px 24px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    /* Glass Header */
-    .top-bar {
-      background: var(--glass-bg);
-      backdrop-filter: blur(26px) saturate(165%);
-      -webkit-backdrop-filter: blur(26px) saturate(165%);
-      border: 1px solid var(--rim-light);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-glass);
-      padding: 18px 22px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .top-bar::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 35%, transparent 72%, rgba(0, 212, 240, 0.08) 100%);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, var(--cyan), var(--azure) 55%, var(--flamingo));
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: -0.04em;
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(10, 132, 255, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-    }
-
-    .brand-title h1 {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .os-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: var(--radius-pill);
-      background: rgba(10, 132, 255, 0.18);
-      border: 1px solid rgba(10, 132, 255, 0.45);
-      color: #82c2ff;
-    }
-
-    .brand-sub {
-      margin-top: 3px;
-      font-size: 12.5px;
-      color: var(--text-secondary);
-    }
-
-    .header-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 9px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 12.5px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--rim-light);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-primary);
-      transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
-    }
-
-    .btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.28);
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--azure), #0066e6);
-      border-color: rgba(130, 194, 255, 0.5);
-      box-shadow: 0 6px 20px rgba(10, 132, 255, 0.32);
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #2191ff, var(--azure));
-    }
-
-    /* Telemetry & Progress Strip */
-    .kpi-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-      gap: 12px;
-    }
-
-    .kpi-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid var(--rim-soft);
-      border-radius: var(--radius-md);
-      padding: 13px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .kpi-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-    }
-
-    .kpi-value {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .kpi-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-      margin-top: 2px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      border-radius: var(--radius-pill);
-      background: linear-gradient(90deg, var(--cyan), var(--azure), var(--mint));
-      transition: width 0.35s ease;
-    }
-
-    /* Filter Toolbar */
-    .toolbar {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid var(--rim-soft);
-      border-radius: var(--radius-md);
-      padding: 12px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-box {
-      flex: 1 1 240px;
-      position: relative;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 9px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--rim-soft);
-      background: rgba(8, 12, 20, 0.65);
-      color: var(--text-primary);
-      font-size: 13px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.16s ease, box-shadow 0.16s ease;
-    }
-
-    .search-box input:focus {
-      border-color: var(--azure);
-      box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.2);
-    }
-
-    .filter-select {
-      padding: 8px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--rim-soft);
-      background: rgba(8, 12, 20, 0.72);
-      color: var(--text-primary);
-      font-size: 12.5px;
-      font-family: inherit;
-      font-weight: 500;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .filter-select:focus {
-      border-color: var(--azure);
-    }
-
-    .sync-pill {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--mint);
-      box-shadow: 0 0 10px var(--mint);
-    }
-
-    /* Kanban Board */
-    .board {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(290px, 1fr));
-      gap: 14px;
-      align-items: start;
-      overflow-x: auto;
-      padding-bottom: 12px;
-    }
-
-    .column {
-      background: var(--glass-bg);
-      backdrop-filter: blur(22px) saturate(155%);
-      -webkit-backdrop-filter: blur(22px) saturate(155%);
-      border: 1px solid var(--rim-soft);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-glass);
-      display: flex;
-      flex-direction: column;
-      min-height: 520px;
-      transition: border-color 0.16s ease, background 0.16s ease;
-    }
-
-    .column.drag-over {
-      border-color: var(--cyan);
-      background: rgba(0, 212, 240, 0.08);
-    }
-
-    .column-header {
-      padding: 15px 16px 12px;
-      border-bottom: 1px solid var(--rim-soft);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .column-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .col-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .column-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .column-count {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-secondary);
-    }
-
-    .column-desc {
-      padding: 8px 16px 2px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .column-cards {
-      padding: 10px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
-
-    /* Kanban Card */
-    .card {
-      background: var(--glass-card);
-      border: 1px solid var(--rim-soft);
-      border-radius: var(--radius-md);
-      padding: 13px 14px;
-      cursor: grab;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      position: relative;
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.09);
-    }
-
-    .card:hover {
-      background: var(--glass-card-hover);
-      border-color: rgba(255, 255, 255, 0.22);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-    }
-
-    .card.dragging {
-      opacity: 0.45;
-      transform: scale(0.98);
-    }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .issue-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .priority-pill {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.02em;
-    }
-
-    .prio-p0 { background: rgba(255, 69, 58, 0.18); color: #ff7b72; border: 1px solid rgba(255, 69, 58, 0.4); }
-    .prio-p1 { background: rgba(255, 159, 10, 0.18); color: #ffc15e; border: 1px solid rgba(255, 159, 10, 0.4); }
-    .prio-p2 { background: rgba(10, 132, 255, 0.16); color: #7ac0ff; border: 1px solid rgba(10, 132, 255, 0.35); }
-    .prio-p3 { background: rgba(142, 153, 173, 0.15); color: #b6c0d2; border: 1px solid rgba(142, 153, 173, 0.3); }
-
-    .card-title {
-      font-size: 13.5px;
-      font-weight: 650;
-      line-height: 1.4;
-      color: var(--text-primary);
-    }
-
-    .card-meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      font-size: 10.5px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-secondary);
-    }
-
-    .chip-area {
-      background: rgba(0, 212, 240, 0.1);
-      border-color: rgba(0, 212, 240, 0.28);
-      color: #8eeeff;
-    }
-
-    .chip-phase {
-      background: rgba(255, 48, 152, 0.1);
-      border-color: rgba(255, 48, 152, 0.28);
-      color: #ff99cc;
-    }
-
-    .empty-col {
-      text-align: center;
-      padding: 28px 12px;
-      font-size: 12px;
-      color: var(--text-muted);
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 7, 13, 0.72);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 100;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 640px;
-      background: rgba(16, 22, 36, 0.94);
-      border: 1px solid var(--rim-light);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-height: 86vh;
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .modal-title {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.35;
-    }
-
-    .modal-close {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--rim-soft);
-      color: var(--text-primary);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .modal-body {
-      font-size: 13.5px;
-      line-height: 1.65;
-      color: var(--text-secondary);
-      white-space: pre-wrap;
-      background: rgba(7, 11, 18, 0.55);
-      border: 1px solid var(--rim-soft);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-    }
-
-    .modal-body code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      background: rgba(10, 132, 255, 0.16);
-      color: #93ccff;
-      padding: 1px 5px;
-      border-radius: 5px;
-    }
-
-    .modal-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 4px;
-    }
-
-    .move-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    @media (max-width: 1100px) {
-      .app-shell { padding: 14px; }
-      .board { grid-template-columns: repeat(5, 300px); }
-    }
-  </style>
+  <link rel="stylesheet" href="/src/styles.css" />
 </head>
 <body>
   <div class="ambient-bg"></div>
-  <main class="app-shell">
-    <header class="top-bar">
+
+  <!-- Google Login & Invite Gate -->
+  <section class="auth-gate" id="authGate">
+    <div class="auth-card">
       <div class="brand">
-        <div class="brand-mark">SC</div>
+        <div class="brand-mark">VX</div>
         <div class="brand-title">
-          <h1>Sun City RP Kanban <span class="os-badge">SunOS Glass</span></h1>
-          <div class="brand-sub">GitHub Pages board synced with velumix/SunCityRP &amp; Project #1 — drag cards locally or click any card to open on GitHub.</div>
+          <h1>Velumix Studio <span class="os-badge">SunOS Cloud</span></h1>
+          <div class="brand-sub">Sun City RP · Dive · Velum Forge 3D Asset Hub</div>
         </div>
       </div>
+
+      <div class="auth-invite-banner" id="authInviteBanner" style="display:none;">
+        <strong>Workspace Invite Link Detected</strong><br />
+        Sign in with your Google account below to accept your invite and unlock live access.
+      </div>
+
+      <div id="authSignInPanel" style="display:flex;flex-direction:column;gap:14px;">
+        <p style="font-size:13px;line-height:1.55;color:var(--text-secondary);">
+          Sign in with your authorized Google account or use a shared workspace invite link from the project owner.
+        </p>
+        <button class="btn-google" id="googleSignInBtn" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <!-- Shown when signed in to Google WITHOUT an invite -->
+      <div id="authRestrictedPanel" style="display:none;flex-direction:column;gap:12px;">
+        <div style="padding:12px 14px;border-radius:12px;background:rgba(255,69,58,0.12);border:1px solid rgba(255,69,58,0.38);font-size:12.5px;line-height:1.5;color:#ffb4ae;">
+          <strong>Invite Required</strong><br />
+          Signed in as <strong id="restrictedUserEmail"></strong>, which does not have workspace access yet. Paste an invite link or code from the owner below:
+        </div>
+        <div style="display:flex;gap:8px;">
+          <input id="manualInviteInput" class="form-input" placeholder="Paste invite link or code (inv_...)" />
+          <button class="btn btn-mint" id="redeemManualInviteBtn" type="button">Join</button>
+        </div>
+        <button class="btn" id="restrictedSignOutBtn" type="button" style="justify-content:center;">Switch Google Account</button>
+      </div>
+
+      <!-- Shown only before Firebase Web SDK config is set -->
+      <div class="auth-setup-box" id="firebaseSetupPanel" style="display:none;">
+        <div style="font-size:12px;font-weight:700;color:#ffc466;">One-Time Firebase Project Connection</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);line-height:1.45;">
+          Paste your Firebase Web App <code>firebaseConfig</code> JSON (or set GitHub repo variable <code>VITE_FIREBASE_CONFIG</code>) to enable Google Sign-In &amp; Firestore sync:
+        </div>
+        <textarea id="firebaseConfigInput" class="form-textarea" style="min-height:92px;font-family:'JetBrains Mono',monospace;font-size:11px;" placeholder='{"apiKey":"...","authDomain":"...firebaseapp.com","projectId":"...","appId":"..."}'></textarea>
+        <button class="btn btn-primary" id="saveFirebaseConfigBtn" type="button" style="justify-content:center;">Save Firebase Config &amp; Reload</button>
+      </div>
+
+      <div class="issue-num" id="authStatusMsg" style="text-align:center;">Initializing authentication...</div>
+    </div>
+  </section>
+
+  <!-- Authenticated Kanban Studio Shell -->
+  <main class="app-shell" id="appShell" style="display:none;">
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-mark">VX</div>
+        <div class="brand-title">
+          <h1>
+            Velumix Studio Kanban
+            <span class="os-badge">GitHub Pages</span>
+            <span class="mode-badge" id="modeBadge">Realtime Firestore</span>
+          </h1>
+          <div class="brand-sub">Google-authenticated roadmap &amp; Velum Forge 3D asset studio for <strong>Sun City RP</strong> &amp; <strong>Dive</strong>.</div>
+        </div>
+      </div>
+
+      <div class="view-tabs" role="tablist">
+        <button class="view-tab active" data-view="kanban">Project Board</button>
+        <button class="view-tab" data-view="designs">Miami Building Designs</button>
+        <button class="view-tab" data-view="pipeline">3D Asset Pipeline</button>
+        <button class="view-tab" data-view="matrix">Asset Matrix</button>
+      </div>
+
       <div class="header-actions">
-        <a class="btn" id="repoLink" href="https://github.com/velumix/SunCityRP" target="_blank" rel="noopener">Repository</a>
+        <button class="btn btn-mint" id="teamBtn" style="display:none;" title="Generate Google login invite links &amp; manage members">+ Invite Link / Team</button>
         <a class="btn" id="projectLink" href="https://github.com/users/velumix/projects/1" target="_blank" rel="noopener">GitHub Project #1</a>
-        <a class="btn btn-primary" href="https://github.com/velumix/SunCityRP/issues/new" target="_blank" rel="noopener">+ New Issue</a>
+        <button class="btn btn-primary" id="newCardBtn">+ New Card</button>
+        <div class="user-pill" id="userPill">
+          <img class="user-avatar" id="userAvatar" alt="" />
+          <span id="userName" style="font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+          <span class="role-badge" id="userRoleBadge">MEMBER</span>
+          <button class="btn" id="signOutBtn" style="padding:4px 9px;font-size:11px;" title="Sign out">Sign out</button>
+        </div>
       </div>
     </header>
 
@@ -617,304 +110,204 @@
 
     <section class="toolbar">
       <div class="search-box">
-        <input id="searchInput" type="search" placeholder="Search issues, IDs (e.g. FND-004, NPC, Weather, MVP)..." />
+        <input id="searchInput" type="search" placeholder="Search issues, Miami buildings, Studio paths, fish, boats, weapons..." />
       </div>
-      <select id="areaFilter" class="filter-select"><option value="">All Areas</option></select>
-      <select id="phaseFilter" class="filter-select"><option value="">All Phases</option></select>
+      <select id="gameFilter" class="filter-select">
+        <option value="">All Games</option>
+        <option value="Sun City RP">Sun City RP</option>
+        <option value="Dive">Dive</option>
+      </select>
+      <select id="areaFilter" class="filter-select"><option value="">All Areas / Categories</option></select>
+      <select id="phaseFilter" class="filter-select"><option value="">All Phases / Stages</option></select>
       <select id="priorityFilter" class="filter-select"><option value="">All Priorities</option></select>
-      <button id="resetMovesBtn" class="btn" style="display:none;" title="Clear local drag-and-drop overrides">Reset Local Moves</button>
-      <div class="sync-pill"><span class="live-dot"></span><span id="syncStamp">Loading...</span></div>
+      <div class="sync-pill"><span class="live-dot" id="liveDot"></span><span id="syncStamp">Live Cloud Sync</span></div>
     </section>
 
-    <section class="board" id="board"></section>
+    <section class="board" id="boardView"></section>
+    <section class="matrix-wrap" id="matrixView" style="display:none;"></section>
   </main>
 
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+  <!-- Project Issue Modal -->
+  <div class="modal-backdrop" id="issueModalBackdrop" role="dialog" aria-modal="true">
     <div class="modal">
       <div class="modal-header">
         <div>
           <div class="issue-num" id="modalIssueNum"></div>
           <h2 class="modal-title" id="modalTitle"></h2>
         </div>
-        <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+        <button class="modal-close" data-close="issueModalBackdrop">&times;</button>
       </div>
-      <div class="card-meta-row" id="modalMeta"></div>
+      <div class="gallery-stage" id="issueCoverWrap" style="display:none;">
+        <img class="gallery-main" id="issueCoverImg" alt="Asset Render Preview" />
+      </div>
+      <div class="field-grid" id="issueFieldGrid"></div>
       <div class="modal-body" id="modalBody"></div>
       <div class="modal-footer">
-        <div class="move-group">
-          <span>Move column:</span>
-          <select id="modalStatusSelect" class="filter-select"></select>
-        </div>
-        <a id="modalGithubLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Open on GitHub</a>
+        <span class="issue-num" id="issueChecklistHint">Changes sync in real time across all invited team members.</span>
+        <a id="modalGithubLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Open on GitHub &#x2197;</a>
       </div>
     </div>
   </div>
 
-  <script>
-    const STORAGE_KEY = "suncity_kanban_status_overrides_v1";
-    let boardData = null;
-    let statusOverrides = {};
-    let activeCardNumber = null;
-
-    try {
-      statusOverrides = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    } catch (_) {
-      statusOverrides = {};
-    }
-
-    function saveOverrides() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(statusOverrides));
-      } catch (_) {}
-      document.getElementById("resetMovesBtn").style.display =
-        Object.keys(statusOverrides).length > 0 ? "inline-flex" : "none";
-    }
-
-    function effectiveStatus(item) {
-      return statusOverrides[item.number] || item.status;
-    }
-
-    function priorityClass(prio) {
-      if (!prio) return "prio-p2";
-      if (prio.startsWith("P0")) return "prio-p0";
-      if (prio.startsWith("P1")) return "prio-p1";
-      if (prio.startsWith("P2")) return "prio-p2";
-      return "prio-p3";
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function formatBodyHtml(text) {
-      return escapeHtml(text || "No description provided.")
-        .replace(/`([^`]+)`/g, "<code>$1</code>");
-    }
-
-    function populateFilters(items) {
-      const fill = (id, key, label) => {
-        const el = document.getElementById(id);
-        const vals = [...new Set(items.map((i) => i[key]).filter(Boolean))].sort();
-        el.innerHTML = `<option value="">${label}</option>` +
-          vals.map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
-      };
-      fill("areaFilter", "area", "All Areas");
-      fill("phaseFilter", "phase", "All Phases");
-      fill("priorityFilter", "priority", "All Priorities");
-    }
-
-    function renderKpis(data) {
-      const items = data.items;
-      const total = items.length;
-      const done = items.filter((i) => effectiveStatus(i) === "Done").length;
-      const qa = items.filter((i) => effectiveStatus(i) === "In Review / QA").length;
-      const ready = items.filter((i) => effectiveStatus(i) === "Ready" || effectiveStatus(i) === "In Progress").length;
-      const pct = total ? Math.round((done / total) * 100) : 0;
-      const m = data.metrics || {};
-
-      document.getElementById("kpiStrip").innerHTML = `
-        <div class="kpi-card">
-          <div class="kpi-label">Milestone Completion</div>
-          <div class="kpi-value">${pct}% <span class="kpi-meta">${done}/${total} cards done</span></div>
-          <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+  <!-- 3D Asset & Miami Architectural Blueprint Modal -->
+  <div class="modal-backdrop" id="assetModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="issue-num" id="assetModalMeta"></div>
+          <h2 class="modal-title" id="assetModalTitle"></h2>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Studio Playtest QA</div>
-          <div class="kpi-value" style="color:var(--purple)">${qa} <span class="kpi-meta">awaiting playtest</span></div>
+        <button class="modal-close" data-close="assetModalBackdrop">&times;</button>
+      </div>
+      <div class="gallery-stage" id="assetGalleryWrap" style="display:none;">
+        <img class="gallery-main" id="assetGalleryMain" alt="Velum Forge 2K Render" />
+        <div class="gallery-strip" id="assetGalleryStrip"></div>
+      </div>
+      <div class="modal-body" id="assetBlueprintWrap" style="display:none;"></div>
+      <div class="field-grid" id="assetFieldGrid"></div>
+      <div class="field-box">
+        <label>Audit Notes &amp; Next Action</label>
+        <textarea id="assetNotesInput" class="form-textarea"></textarea>
+      </div>
+      <div class="modal-footer">
+        <span class="mono-path" id="assetPathsInfo"></span>
+        <button class="btn btn-primary" id="saveAssetBtn">Save Asset Notes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Card Modal -->
+  <div class="modal-backdrop" id="newModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal" style="max-width:560px;">
+      <div class="modal-header">
+        <div>
+          <div class="issue-num">CREATE WORK ITEM</div>
+          <h2 class="modal-title">Add New Kanban Card or 3D Asset</h2>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Ready / Active</div>
-          <div class="kpi-value" style="color:var(--azure)">${ready} <span class="kpi-meta">next up</span></div>
+        <button class="modal-close" data-close="newModalBackdrop">&times;</button>
+      </div>
+      <div class="field-grid">
+        <div class="field-box">
+          <label>Card Type</label>
+          <select id="newCardKind" class="filter-select">
+            <option value="issue">Project Board Card</option>
+            <option value="asset">3D / Miami Asset Entry</option>
+          </select>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Automated Test Suite</div>
-          <div class="kpi-value" style="color:var(--mint)">${m.testsPassed || 399}/${m.testsTotal || 399} <span class="kpi-meta">Lune specs passing</span></div>
+        <div class="field-box">
+          <label>Game</label>
+          <select id="newCardGame" class="filter-select">
+            <option value="Sun City RP">Sun City RP</option>
+            <option value="Dive">Dive</option>
+          </select>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Platform &amp; Nerve Cap</div>
-          <div class="kpi-value" style="color:var(--cyan)">${m.nervePackets || 236}/${m.nervePacketCap || 240} <span class="kpi-meta">${m.services || 52} services · ${m.scriptGuides || 482} guides</span></div>
+        <div class="field-box">
+          <label>Priority</label>
+          <select id="newCardPriority" class="filter-select">
+            <option value="P0 Critical">P0 Critical</option>
+            <option value="P1 High" selected>P1 High</option>
+            <option value="P2 Medium">P2 Medium</option>
+            <option value="P3 Low">P3 Low</option>
+          </select>
         </div>
-      `;
-    }
+        <div class="field-box">
+          <label>Area / Category</label>
+          <select id="newCardArea" class="filter-select">
+            <option value="Miami Architecture">Miami Architecture</option>
+            <option value="Water & Boats">Water &amp; Boats</option>
+            <option value="Gameplay & Jobs">Gameplay &amp; Jobs</option>
+            <option value="Weather & World">Weather &amp; World</option>
+            <option value="UI & SunOS">UI &amp; SunOS</option>
+            <option value="Backend & Ops">Backend &amp; Ops</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-box">
+        <label>Title</label>
+        <input id="newCardTitle" class="form-input" placeholder="e.g. [Phase A] Build & Bake Eclipse Neon Lounge..." />
+      </div>
+      <div class="field-box">
+        <label>Description / Checklist (Markdown)</label>
+        <textarea id="newCardBody" class="form-textarea" placeholder="- [ ] Design spec in Kanban&#10;- [ ] Run vforge qa (0E/0W)&#10;- [ ] Bake 2K Cycles GPU PBR"></textarea>
+      </div>
+      <div class="modal-footer">
+        <span class="issue-num" id="newCardStatusMsg"></span>
+        <button class="btn btn-primary" id="submitNewCardBtn">Create Card</button>
+      </div>
+    </div>
+  </div>
 
-    function getFilteredItems() {
-      const q = document.getElementById("searchInput").value.trim().toLowerCase();
-      const area = document.getElementById("areaFilter").value;
-      const phase = document.getElementById("phaseFilter").value;
-      const prio = document.getElementById("priorityFilter").value;
+  <!-- Owner Invite Links, Team Members & Cloud Seed Modal -->
+  <div class="modal-backdrop" id="teamModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal" style="max-width:740px;">
+      <div class="modal-header">
+        <div>
+          <div class="issue-num">WORKSPACE ACCESS &amp; INVITE LINKS</div>
+          <h2 class="modal-title">Invite Teammates via Google Login Link</h2>
+        </div>
+        <button class="modal-close" data-close="teamModalBackdrop">&times;</button>
+      </div>
 
-      return boardData.items.filter((item) => {
-        if (area && item.area !== area) return false;
-        if (phase && item.phase !== phase) return false;
-        if (prio && item.priority !== prio) return false;
-        if (q) {
-          const hay = `#${item.number} ${item.title} ${item.body} ${item.area} ${item.phase} ${item.priority}`.toLowerCase();
-          if (!hay.includes(q)) return false;
-        }
-        return true;
-      });
-    }
+      <div class="field-grid">
+        <div class="field-box">
+          <label>Access Role</label>
+          <select id="inviteRoleSel" class="filter-select">
+            <option value="editor">Editor (Move &amp; edit cards)</option>
+            <option value="viewer">Viewer (Read-only)</option>
+          </select>
+        </div>
+        <div class="field-box">
+          <label>Link Label</label>
+          <input id="inviteLabelInput" class="form-input" placeholder="e.g. 3D Artist / Co-Dev" />
+        </div>
+        <div class="field-box">
+          <label>Expiration</label>
+          <select id="inviteExpirySel" class="filter-select">
+            <option value="7">7 Days</option>
+            <option value="30" selected>30 Days</option>
+            <option value="0">Never Expires</option>
+          </select>
+        </div>
+        <div class="field-box">
+          <label>Max Uses</label>
+          <select id="inviteMaxUsesSel" class="filter-select">
+            <option value="1">Single Use (1 person)</option>
+            <option value="5" selected>Up to 5 people</option>
+            <option value="25">Up to 25 people</option>
+            <option value="0">Unlimited</option>
+          </select>
+        </div>
+      </div>
 
-    function renderBoard() {
-      if (!boardData) return;
-      renderKpis(boardData);
-      const filtered = getFilteredItems();
-      const boardEl = document.getElementById("board");
-      boardEl.innerHTML = "";
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <button class="btn btn-mint" id="createInviteBtn" type="button">Generate &amp; Copy Shareable Invite Link</button>
+        <input id="latestInviteUrlInput" class="form-input" readonly placeholder="Generated https://velumix.github.io/suncity-kanban/?invite=... appears here" style="flex:1;font-family:'JetBrains Mono',monospace;font-size:11.5px;" />
+      </div>
 
-      for (const col of boardData.columns) {
-        const colItems = filtered.filter((item) => effectiveStatus(item) === col.id);
-        const colEl = document.createElement("div");
-        colEl.className = "column";
-        colEl.dataset.status = col.id;
+      <div>
+        <div style="font-size:11.5px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Active Invite Links</div>
+        <div id="invitesListWrap" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
 
-        colEl.addEventListener("dragover", (e) => {
-          e.preventDefault();
-          colEl.classList.add("drag-over");
-        });
-        colEl.addEventListener("dragleave", () => colEl.classList.remove("drag-over"));
-        colEl.addEventListener("drop", (e) => {
-          e.preventDefault();
-          colEl.classList.remove("drag-over");
-          const num = Number(e.dataTransfer.getData("text/plain"));
-          if (num) {
-            const orig = boardData.items.find((i) => i.number === num);
-            if (orig && orig.status === col.id) {
-              delete statusOverrides[num];
-            } else {
-              statusOverrides[num] = col.id;
-            }
-            saveOverrides();
-            renderBoard();
-          }
-        });
+      <div>
+        <div style="font-size:11.5px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Authorized Google Accounts</div>
+        <div id="membersListWrap" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
 
-        colEl.innerHTML = `
-          <div class="column-header">
-            <div class="column-title-wrap">
-              <span class="col-dot" style="background:${col.accent}; box-shadow: 0 0 10px ${col.accent};"></span>
-              <span class="column-title">${escapeHtml(col.label)}</span>
-            </div>
-            <span class="column-count">${colItems.length}</span>
-          </div>
-          <div class="column-desc">${escapeHtml(col.description)}</div>
-          <div class="column-cards"></div>
-        `;
+      <div class="modal-body" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+        <div>
+          <strong style="color:var(--text-primary);">Sync Local Repo Snapshot (`cloud-seed-bundle.json`)</strong>
+          <div style="font-size:11.5px;color:var(--text-muted);">Import `kanban/cloud-seed-bundle.json` from Sun City RP to push latest issues, Miami blueprints &amp; 2K renders to Firestore.</div>
+        </div>
+        <label class="btn btn-primary" style="cursor:pointer;">
+          Import Seed JSON
+          <input type="file" id="seedBundleFileInput" accept=".json" style="display:none;" />
+        </label>
+      </div>
+    </div>
+  </div>
 
-        const cardsWrap = colEl.querySelector(".column-cards");
-        if (colItems.length === 0) {
-          cardsWrap.innerHTML = `<div class="empty-col">No matching cards</div>`;
-        } else {
-          for (const item of colItems) {
-            const cardEl = document.createElement("article");
-            cardEl.className = "card";
-            cardEl.draggable = true;
-            cardEl.addEventListener("dragstart", (e) => {
-              cardEl.classList.add("dragging");
-              e.dataTransfer.setData("text/plain", String(item.number));
-            });
-            cardEl.addEventListener("dragend", () => cardEl.classList.remove("dragging"));
-            cardEl.addEventListener("click", () => openModal(item));
-
-            cardEl.innerHTML = `
-              <div class="card-top">
-                <span class="issue-num">#${item.number} · ${item.state === "CLOSED" ? "CLOSED" : "OPEN"}</span>
-                <span class="priority-pill ${priorityClass(item.priority)}">${escapeHtml(item.priority)}</span>
-              </div>
-              <div class="card-title">${escapeHtml(item.title)}</div>
-              <div class="card-meta-row">
-                <span class="chip chip-area">${escapeHtml(item.area)}</span>
-                <span class="chip chip-phase">${escapeHtml(item.phase)}</span>
-              </div>
-            `;
-            cardsWrap.appendChild(cardEl);
-          }
-        }
-        boardEl.appendChild(colEl);
-      }
-    }
-
-    function openModal(item) {
-      activeCardNumber = item.number;
-      document.getElementById("modalIssueNum").textContent = `velumix/SunCityRP #${item.number} · ${item.state}`;
-      document.getElementById("modalTitle").textContent = item.title;
-      document.getElementById("modalBody").innerHTML = formatBodyHtml(item.body);
-      document.getElementById("modalGithubLink").href = item.url;
-
-      const labelChips = (item.labels || [])
-        .map((l) => `<span class="chip">${escapeHtml(l.name)}</span>`)
-        .join("");
-      document.getElementById("modalMeta").innerHTML = `
-        <span class="priority-pill ${priorityClass(item.priority)}">${escapeHtml(item.priority)}</span>
-        <span class="chip chip-area">${escapeHtml(item.area)}</span>
-        <span class="chip chip-phase">${escapeHtml(item.phase)}</span>
-        ${labelChips}
-      `;
-
-      const sel = document.getElementById("modalStatusSelect");
-      sel.innerHTML = boardData.columns
-        .map((c) => `<option value="${escapeHtml(c.id)}" ${effectiveStatus(item) === c.id ? "selected" : ""}>${escapeHtml(c.label)}</option>`)
-        .join("");
-      document.getElementById("modalBackdrop").classList.add("open");
-    }
-
-    function closeModal() {
-      document.getElementById("modalBackdrop").classList.remove("open");
-      activeCardNumber = null;
-    }
-
-    document.getElementById("modalClose").addEventListener("click", closeModal);
-    document.getElementById("modalBackdrop").addEventListener("click", (e) => {
-      if (e.target.id === "modalBackdrop") closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-    document.getElementById("modalStatusSelect").addEventListener("change", (e) => {
-      if (activeCardNumber == null) return;
-      const nextStatus = e.target.value;
-      const orig = boardData.items.find((i) => i.number === activeCardNumber);
-      if (orig && orig.status === nextStatus) {
-        delete statusOverrides[activeCardNumber];
-      } else {
-        statusOverrides[activeCardNumber] = nextStatus;
-      }
-      saveOverrides();
-      renderBoard();
-    });
-
-    document.getElementById("resetMovesBtn").addEventListener("click", () => {
-      statusOverrides = {};
-      saveOverrides();
-      renderBoard();
-    });
-
-    ["searchInput", "areaFilter", "phaseFilter", "priorityFilter"].forEach((id) => {
-      document.getElementById(id).addEventListener("input", renderBoard);
-      document.getElementById(id).addEventListener("change", renderBoard);
-    });
-
-    async function boot() {
-      try {
-        const res = await fetch("./data.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        boardData = await res.json();
-        populateFilters(boardData.items);
-        saveOverrides();
-        const stamp = boardData.generatedAt ? new Date(boardData.generatedAt).toLocaleString() : "Synced";
-        document.getElementById("syncStamp").textContent = `Synced ${stamp}`;
-        renderBoard();
-      } catch (err) {
-        document.getElementById("board").innerHTML =
-          `<div class="empty-col" style="grid-column:1/-1;">Failed to load kanban/data.json: ${escapeHtml(err.message)}</div>`;
-      }
-    }
-
-    boot();
-  </script>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
