@@ -1226,6 +1226,56 @@ function wireUiEvents() {
     refreshTeamModal();
   });
 
+  document.getElementById("aiKitBtn").addEventListener("click", () => {
+    const cfg = loadFirebaseConfig() || {};
+    const cliUrl = new URL("./kanban-ai.mjs", window.location.href).toString();
+    const unbuilt = sortedAssets().filter((a) => a.designSpec && a.stage === "Designed in Kanban").map((a) => a.designSpec.slug);
+    const promptText = [
+      "You have live CLI access to our Velumix Studio Kanban & Miami 3D Asset Blueprints.",
+      "",
+      "1. Download the zero-dependency Node 20+ CLI into the workspace:",
+      `   curl -fsSL "${cliUrl}" -o kanban-ai.mjs`,
+      "2. Make sure `.kanban-ai.json` is saved in the current directory (or `~/.kanban-ai.json`) and listed in `.gitignore`.",
+      "3. Use these commands to inspect blueprints, claim tasks, and update stages in real time:",
+      "   node kanban-ai.mjs status",
+      "   node kanban-ai.mjs list-cards --status \"Ready\"",
+      "   node kanban-ai.mjs get-card 38",
+      "   node kanban-ai.mjs list-designs --stage \"Designed in Kanban\"",
+      "   node kanban-ai.mjs get-design coastal_trauma_hospital",
+      "   node kanban-ai.mjs move-card 38 \"In Progress\"",
+      "   node kanban-ai.mjs update-design <slug> --stage \"Baked & QA Pass\" --notes \"0E/0W QA Pass\"",
+      "   node kanban-ai.mjs upsert-design --file <design-entry.json>",
+      "   node kanban-ai.mjs create-card --title \"...\" --area \"Miami Architecture\" --priority \"P1 High\"",
+      "",
+      `Remaining unbuilt Miami Building Blueprints (${unbuilt.length}): ${unbuilt.join(", ") || "none"}`
+    ].join("\n");
+    document.getElementById("aiRoleLabel").textContent = (currentRole || "viewer").toUpperCase();
+    document.getElementById("aiPromptPreview").value = promptText;
+    document.getElementById("aiModalBackdrop").classList.add("open");
+
+    document.getElementById("copyAiPromptBtn").onclick = async () => {
+      await navigator.clipboard.writeText(promptText);
+      showToast("Copied AI setup prompt to clipboard!");
+    };
+    document.getElementById("copyAiConfigBtn").onclick = async () => {
+      const refreshToken = currentUser?.stsTokenManager?.refreshToken || currentUser?.refreshToken || "";
+      if (!refreshToken || !cfg.apiKey || !cfg.projectId) {
+        showToast("Sign in with Google first to export .kanban-ai.json");
+        return;
+      }
+      const sessionJson = JSON.stringify({
+        projectId: cfg.projectId,
+        apiKey: cfg.apiKey,
+        workspaceId: WORKSPACE_ID,
+        email: currentUser.email || "",
+        role: currentRole || "viewer",
+        refreshToken
+      }, null, 2);
+      await navigator.clipboard.writeText(sessionJson);
+      showToast("Copied .kanban-ai.json session config to clipboard!");
+    };
+  });
+
   document.getElementById("createInviteBtn").addEventListener("click", async () => {
     if (!isOwner()) return;
     const role = document.getElementById("inviteRoleSel").value;
