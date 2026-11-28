@@ -14,12 +14,12 @@ const BUILD_TIME_CONFIG = (() => {
 })();
 
 export const DEFAULT_FIREBASE_CONFIG = BUILD_TIME_CONFIG || {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyAjML6dmdUMlPy0Ubo2yp2LnVIcgCdNppY",
+  authDomain: "velumix-suncity-kanban.firebaseapp.com",
+  projectId: "velumix-suncity-kanban",
+  storageBucket: "velumix-suncity-kanban.firebasestorage.app",
+  messagingSenderId: "422359582778",
+  appId: "1:422359582778:web:5f278313e3fa8cd59b4d03"
 };
 
 export function loadFirebaseConfig() {
